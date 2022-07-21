@@ -6,7 +6,7 @@ declare -a StringArray=('deltacid1_clone1_S77_' 'deltacid1_clone2_S78_' 'deltaci
 # Iterate the string array using for loop
 # Align R1 using salmon. Generate counttable and sam file as output.
 for val in ${StringArray[@]}; do 
-	echo "sample_${val}"; samtools view -h -o "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; sam2bed < "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" >"R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam"; awk -F"\t" '{print $1,$2,$3,$4,$6,$8,$9,$12}' "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed" > "R2_allsamples/alignmentR2/${val}R2b.bed"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed"; 
+	echo "sample_${val}"; samtools view -h -o "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; sam2bed < "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" >"R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam"; awk -F "\t" '{print $1,$2,$3,$4,$6,$8,$9,$12}' "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed" > "R2_allsamples/alignmentR2/${val}R2b.bed"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bed"; 
 done
 
 

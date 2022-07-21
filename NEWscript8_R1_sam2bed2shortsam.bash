@@ -6,7 +6,7 @@ declare -a StringArray=('deltacid1_clone1_S77_' 'deltacid1_clone2_S78_' 'deltaci
 # Iterate the string array using for loop
 # Align R1 using salmon. Generate counttable and sam file as output.
 for val in ${StringArray[@]}; do 
-	echo "sample_${val}"; grep A00805 "R2_allsamples/alignmentR1/${val}R1_salmon.sam" > "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam";  sam2bed < "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam" > "R2_allsamples/alignmentR1/${val}R1_onlyreads.bed"; gzip "R2_allsamples/alignmentR1/${val}R1_salmon.sam"; awk -F"\t" '{print $1,$4,$6,$7}' "R2_allsamples/alignmentR1/${val}R1_onlyreads.bed" > "R2_allsamples/alignmentR1/${val}R1b.bed"; awk -F"\t" '{print $1,$2,$3}' "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam" > "R2_allsamples/alignmentR1/${val}R1b.sam"; 
+	echo "sample_${val}"; grep A00805 "R2_allsamples/alignmentR1/${val}R1_salmon.sam" > "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam";  sam2bed < "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam" > "R2_allsamples/alignmentR1/${val}R1_onlyreads.bed"; gzip "R2_allsamples/alignmentR1/${val}R1_salmon.sam"; awk -F"\t" '{print $1,$4,$6,$7}' "R2_allsamples/alignmentR1/${val}R1_onlyreads.bed" > "R2_allsamples/alignmentR1/${val}R1b.bed"; awk -F"\t" '{print $1,$2,$3,$4,$5,$6,$10}' "R2_allsamples/alignmentR1/${val}R1_onlyreads.sam" > "R2_allsamples/alignmentR1/${val}R1b.sam"; 
 done
 
 

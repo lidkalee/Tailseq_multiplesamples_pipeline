@@ -6,9 +6,8 @@ declare -a StringArray=('deltacid1_clone1_S77_' 'deltacid1_clone2_S78_' 'deltaci
 # Iterate the string array using for loop
 # Align R1 using salmon. Generate counttable and sam file as output.
 for val in ${StringArray[@]}; do 
-	echo "sample_${val}"; gunzip "R2_allsamples/alignmentR2/${val}R2_pairedtoR1.fastq.gz"; STAR --genomeDir genome/ --readFilesIn "R2_allsamples/alignmentR2/${val}R2_pairedtoR1.fastq" --alignIntronMax 1000 --outSAMtype BAM Unsorted --outFileNamePrefix "R2_allsamples/alignmentR2/${val}R2_STAR_" –outFilterMultimapNmax 1--outSAMunmapped Within; gzip "R2_allsamples/alignmentR2/${val}R2_pairedtoR1.fastq"; 
+	echo "sample_${val}";  samtools view -h -o "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.bam"; grep A00805 "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam" | awk -F "\t" '{print $1,$2,$3,$4,$5,$6,$10}' > "R2_allsamples/alignmentR2/${val}R2_shortsam.sam"; gzip "R2_allsamples/alignmentR2/${val}R2_STAR_Aligned.out.sam"; 
 done
-
 
 
 
